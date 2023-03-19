@@ -124,17 +124,32 @@ static int expr()
 		return reg;
 	case '-':
 		/* STUDENTS - BEGIN */
-
+		next_token();
+		left_reg = expr();
+		right_reg = expr();
+		reg = next_register();
+		CodeGen(SUB, left_reg, right_reg, reg);
+		return reg;
  		/* STUDENTS - END */
 		return reg;
 	case '*':
 		/* STUDENTS - BEGIN */
-
+		next_token();
+		left_reg = expr();
+		right_reg = expr();
+		reg = next_register();
+		CodeGen(MUL, left_reg, right_reg, reg);
+		return reg;
  		/* STUDENTS - END */
 		return reg;
 	case '/':
 		/* STUDENTS - BEGIN */
-
+		next_token();
+		left_reg = expr();
+		right_reg = expr();
+		reg = next_register();
+		CodeGen(DIV, left_reg, right_reg, reg);
+		return reg;
  		/* STUDENTS - END */
 		return reg;
 	case 'a':
@@ -227,7 +242,12 @@ static void morestmts()
 {
 	switch (token) {
 	/* STUDENTS - BEGIN */
-
+		case ';':
+			next_token();
+			stmtlist();
+			return;
+		case '.':
+			return;
 	/* STUDENTS - END */
 	default:
 		ERROR("Illegal statment.  Current input symbol is %c\n", token);
@@ -238,16 +258,29 @@ static void morestmts()
 static void stmtlist()
 {
 	/* STUDENTS - BEGIN */
+	if(!is_identifier(token) && token != '!')
+	{
+		ERROR("Missing expected token \n");
+		exit(EXIT_FAILURE);
+	}
 
+	stmt();
+	morestmts();
+	return;
 	/* STUDENTS - END */
 }
 
 static void program()
 {
 	/* STUDENTS - BEGIN */
+	stmtlist();
 
-        expr(); /* THIS IS BOGUS - NEEDS TO BE DELETED */
-  
+	if(token != '.')
+	{
+		ERROR("Missing expected symbol '.' \n");
+		exit(EXIT_FAILURE);
+	}
+	next_token();
 	/* STUDENTS - END */
 
 }
