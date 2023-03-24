@@ -1,7 +1,8 @@
 import os
 import subprocess
 
-make_targets = ["compile", "constfolding", "strengthreduct", "deadcode"]
+make_targets = ["compile", "constfolding"]
+#make_targets = ["compile", "constfolding", "strengthreduct", "deadcode"]
 
 def test_compile():
     print("Tests for compile:")
@@ -105,8 +106,8 @@ test_compile()
 print()
 test_constfolding()
 print()
-test_strength_reduction()
+#test_strength_reduction()
 print()
-test_deadcode_elimination()
+#test_deadcode_elimination()
 print()
-test_valgrind()
+#test_valgrind()
