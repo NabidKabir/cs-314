@@ -46,49 +46,7 @@ int int_log2(int n) {
 Instruction *strength_reduction(Instruction *head) {
 
 		/* STUDENTS - BEGIN */
-	/*for(Instruction *subset_head = head; get_ilist_length(subset_head) >= SUBSET_SIZE; subset_head = subset_head->next)
-	{
-		if(!is_reduction_valid(subset_head))
-		{
-			continue;
-		}
-
-		int constant1 = subset_head->field1;
-		
-		int shift = int_log2(constant1);
-
-		switch(subset_head->next->opcode)
-		{
-			case MUL:
-			{
-				int register_a = subset_head->field1;
-				int operation_register_b = subset_head->next->field1;
-
-				if(register_a == operation_register_b)
-				{
-					subset_head->next->field1 = subset_head->next->field2;
-				}
-
-				subset_head->next->field2 = shift;
-				subset_head->next->opcode = LSHIFTI;
-				break;
-			}
-			case DIV:
-				subset_head->next->field2 = shift;
-				subset_head->next->opcode = RSHIFTI;
-				break;
-			default:
-				break;
-		}
-
-	}*/
- 		/* STUDENTS - END */
-
-	for (
-		Instruction *window_head = head;
-		get_ilist_length(window_head) >= SUBSET_SIZE;
-		window_head = window_head->next
-	) {
+	for (Instruction *window_head = head; get_ilist_length(window_head) >= SUBSET_SIZE; window_head = window_head->next) {
 		if (!is_reduction_valid(window_head)) {
 			continue;
 		}
@@ -121,6 +79,7 @@ Instruction *strength_reduction(Instruction *head) {
 				break;
 		}
 	}
+	/* STUDENTS - END */
 
 	return head;
 
