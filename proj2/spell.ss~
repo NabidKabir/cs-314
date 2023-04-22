@@ -17,41 +17,12 @@
 ;; *** CODE FOR ANY HELPER FUNCTION GOES HERE ***
 
 
-(define contains
-  (lambda (elem l)
-    (cond
-      ((null? l) #f)
-      ((= elem (car l)) #t)
-      (else (contains elem (cdr l))))))
-
-(define list-contains
-  (lambda (l1 l2)
-    (cond
-      ((null? l1) #t)
-      ((contains (car l1) l2) (list-contains (cdr l1) l2))
-      (else #f))))
-
-;;
-
-(define gen-bitvector-entry
-  (lambda (hashfunctionlist entry)
-    (cond
-      ((null? hashfunctionlist) '())
-      (else (append (list ((car hashfunctionlist) entry)) (gen-bitvector-entry (cdr hashfunctionlist) entry))))))
-
-(define gen-bitvector
-  (lambda (hashfunctionlist d)
-    (cond
-      ((null? d) d)
-      (else (append (gen-bitvector-entry hashfunctionlist (car d)) (gen-bitvector hashfunctionlist (cdr d)))))))
 ;; -----------------------------------------------------
 ;; KEY FUNCTION
 
 (define key
   (lambda (w)
-    (cond
-      ((null? w) 0)
-      (else (reduce (lambda (x y) (+ (* 29 y) (ctv x))) w 5077)))
+     'SOME_CODE_GOES_HERE ;; *** FUNCTION BODY IS MISSING ***
 ))
 
 ;; -----------------------------------------------------
@@ -66,7 +37,7 @@
 ;; value of parameter "size" should be a prime number
 (define gen-hash-division-method
   (lambda (size) ;; range of values: 0..size-1
-     (lambda (k) (modulo (key k) size)) ;; *** FUNCTION BODY IS MISSING ***
+     'SOME_CODE_GOES_HERE ;; *** FUNCTION BODY IS MISSING ***
 ))
 
 ;; Note: hash functions may return integer values in "real"
@@ -74,10 +45,7 @@
 
 (define gen-hash-multiplication-method
   (lambda (size) ;; range of values: 0..size-1
-      (lambda (k)
-      (let ((kA (* (key k) A)))
-      (let ((fraction (- kA (floor kA))))
-          (floor (* size fraction))))) ;; *** FUNCTION BODY IS MISSING ***
+     'SOME_CODE_GOES_HERE ;; *** FUNCTION BODY IS MISSING ***
 ))
 
 
@@ -119,10 +87,7 @@
 
 (define gen-checker
   (lambda (hashfunctionlist dict)
-      (let ((bitvector (gen-bitvector hashfunctionlist dict)))
-      (lambda (w)
-        (let ((w-bitvector (gen-bitvector hashfunctionlist (list w))))
-          (list-contains w-bitvector bitvector)))) ;; *** FUNCTION BODY IS MISSING ***
+     'SOME_CODE_GOES_HERE ;; *** FUNCTION BODY IS MISSING ***
 ))
 
 
